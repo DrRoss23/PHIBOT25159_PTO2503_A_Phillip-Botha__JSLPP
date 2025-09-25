@@ -29,26 +29,17 @@ body {
   font-size: 1rem; /* Base font size for rem scaling */
 }
 
-/* ================
-   Sidebar Layout
-================ */
-.side-bar {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--primary-color);
-  border-right: 1px solid #e4ebfa; /* Light divider */
-  width: var(--sidebar-width);
-  height: 100vh;
-}
-
+/* Logo area (sits at top of sidebar) */
 #side-logo-div {
-  margin: 33px 113px 54px 34px; /* Spacing around logo */
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  margin: 24px 24px 16px 0; /* top, right, bottom, left (no left gap) */
 }
 
 #logo {
-  width: 100%; /* Make logo responsive within container */
+  height: 24px;     /* consistent logo size */
+  width: auto;
 }
 
 .boards-nav-links-div {
@@ -67,22 +58,24 @@ h4 {
   letter-spacing: 0.125rem; /* Makes heading more spaced */
 }
 
+/* Sidebar board item (legacy: .board-btn) */
 .board-btn {
   font-family: inherit;
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between icon and text */
-  background-color: var(--primary-btn-color);
+  gap: 10px;
+  background-color: #635fc7;   /* active state color to match Figma */
   color: #fff;
   border: none;
-  border-radius: 0 100px 100px 0; /* Pill shape only on right side */
+  border-radius: 0 100px 100px 0; /* pill only on right */
   height: 48px;
-  width: 276px;
-  padding: 28px 12px 28px 50px;
+  width: 100%;                 /* fill sidebar width */
+  padding: 0 16px;             /* inner text padding */
   font-size: 0.9375rem;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  overflow: hidden; /* Prevents overflowed text/icons from showing */
+  overflow: hidden;
+  text-align: left;
 }
 
 /* ===============
@@ -496,29 +489,113 @@ textarea {
 .close-btn { background: transparent; border: 0; font-size: 1.25rem; cursor: pointer; }
 .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 
-/* Sidebar footer controls */
-.sidebar-controls {
-  margin-top: auto;
-  padding: 16px 18px;
-}
-.sidebar-hide-btn {
-  width: 100%;
-  background: #efeaff;
-  color: #635fc7;
-  border: none;
-  border-radius: 999px;
-  padding: 10px 14px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+/* ============== SIDEBAR LAYOUT (DESKTOP & MOBILE) ============== */
+
+/* Make the sidebar a vertical flex container */
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding-top: 24px;
+  padding-right: 24px;  /* keep right breathing space */
+  padding-bottom: 24px;
+  padding-left: 0;      /* flush-left boards */
 }
 
-/* Floating "show sidebar" button (appears when sidebar is hidden) */
+/* Logo stays at the very top */
+#side-logo-div {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+
+/* Boards section sits directly under the logo */
+.boards-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.boards-title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--secondary-font-color, #6b7280);
+  text-transform: uppercase;
+}
+.board-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #111827;
+  cursor: pointer;
+}
+.board-item.is-active {
+  background: #635fc7;
+  color: #fff;
+}
+
+/* Footer controls area pinned to the bottom */
+.sidebar-controls {
+  margin-top: auto; /* pushes this block to the bottom */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Placeholder for the future theme toggle card */
+.theme-switch-space {
+  height: 56px;                /* reserve space */
+  background: #f3f3ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+}
+
+/* Hide Sidebar button — pill, flush-left look, centered bold label */
+.sidebar-hide-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* center the text in the button */
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  cursor: pointer;
+  background: #efeaff;
+  color: #635fc7;
+  font-weight: 700;            /* bold */
+  border-radius: 0 999px 999px 0; /* right-only pill */
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  text-align: center;
+}
+.sidebar-hide-btn .btn-emoji {
+  display: inline-flex;
+  justify-content: center;
+  width: 24px;                 /* gives emoji a dedicated left gutter */
+  margin-right: 4px;
+}
+.sidebar-hide-btn .btn-label {
+  line-height: 1;
+}
+
+/* ===== Collapsed state (desktop/tablet) ===== */
+body.sidebar-collapsed .side-bar {
+  display: none !important;
+}
+body.sidebar-collapsed .show-sidebar-btn {
+  display: inline-flex;
+}
+
+/* Floating “show sidebar” button (shown when collapsed or on mobile) */
 .show-sidebar-btn {
   position: fixed;
   left: 16px;
   bottom: 16px;
-  display: none;          /* default hidden; shown via state class below */
+  display: none;               /* toggled by state/media rules */
   align-items: center;
   justify-content: center;
   width: 48px;
@@ -532,19 +609,13 @@ textarea {
   box-shadow: 0 8px 24px rgba(0,0,0,.2);
 }
 
-/* Collapsed state (desktop/tablet): hide sidebar and show the floating opener */
-body.sidebar-collapsed .side-bar {
-  display: none !important;
-}
-body.sidebar-collapsed .show-sidebar-btn {
-  display: inline-flex;
-}
-
-/* Mobile overlay behavior (we keep your Step 3 overlay styles) */
+/* ===== Mobile overlay behavior ===== */
 @media (max-width: 1023px) {
   .side-bar {
     display: none;
+    padding: 24px 16px; /* tighter padding on mobile */
   }
+
   .side-bar.show-sidebar {
     display: flex !important;
     position: fixed;
@@ -554,16 +625,13 @@ body.sidebar-collapsed .show-sidebar-btn {
     width: 80vw;
     max-width: 320px;
     z-index: 1000;
+    background: var(--secondary-color, #ffffff);
     box-shadow: 0 8px 24px rgba(0,0,0,.3);
   }
+
   body.menu-open { overflow: hidden; }
 
-  /* On small screens, the floating opener can always be used when sidebar is closed */
-  .show-sidebar-btn {
-    display: inline-flex;
-  }
-  /* But when sidebar overlay is open, hide the floating button to avoid overlap */
-  .side-bar.show-sidebar ~ .show-sidebar-btn {
-    display: none;
-  }
+  .show-sidebar-btn { display: inline-flex; }              /* opener visible on mobile */
+  .side-bar.show-sidebar ~ .show-sidebar-btn { display: none; } /* hide opener while overlay open */
 }
+
