@@ -1,7 +1,7 @@
 // scripts/main.js
 import { loadTasksFromStorage, saveTasksToStorage } from "./utils/localStorage.js";
 import { clearExistingTasks, renderTasks } from "./ui/render.js";
-import { setupModalCloseHandler, setupNewTaskModalHandler } from "./ui/modalHandlers.js";
+import { setupModalCloseHandler, setupNewTaskModalHandler, setupEditModalHandlers } from "./ui/modalHandlers.js";
 import { fetchInitialTasks } from "./api.js";
 
 /** Update the status banner text and show it */
@@ -45,6 +45,8 @@ async function initTaskBoard() {
   setupModalCloseHandler();
   setupNewTaskModalHandler();
 }
+
+setupEditModalHandlers();
 
 document.addEventListener("DOMContentLoaded", initTaskBoard);
 

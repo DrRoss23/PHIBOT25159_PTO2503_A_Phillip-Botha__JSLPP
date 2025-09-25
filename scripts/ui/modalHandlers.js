@@ -1,4 +1,4 @@
-import { addNewTask } from "../tasks/taskManager.js";
+import { addNewTask, updateTask, deleteTask } from "../tasks/taskManager.js";
 
 export function setupModalCloseHandler() {
   const modal = document.getElementById("task-modal");
@@ -31,8 +31,45 @@ export function setupNewTaskModalHandler() {
 
 export function openTaskModal(task) {
   const modal = document.getElementById("task-modal");
-  document.getElementById("task-title").value = task.title;
-  document.getElementById("task-desc").value = task.description;
-  document.getElementById("task-status").value = task.status;
+  if (!modal) return;
+
+  document.getElementById("task-id").value = String(task.id);
+  document.getElementById("task-title").value = task.title || "";
+  document.getElementById("task-desc").value = task.description || "";
+  document.getElementById("task-status").value = task.status || "todo";
+
   modal.showModal();
 }
+
+export function setupEditModalHandlers() {
+  const modal = document.getElementById("task-modal");
+  if (!modal) return;
+
+  const form = document.getElementById("task-form");
+  const closeBtn = document.getElementById("close-modal-btn");
+  const deleteBtn = document.getElementById("delete-task-btn");
+
+  closeBtn.addEventListener("click", () => modal.close());
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const updated = {
+      id: Number(document.getElementById("task-id").value),
+      title: document.getElementById("task-title").value.trim(),
+      description: document.getElementById("task-desc").value.trim(),
+      status: document.getElementById("task-status").value,
+    };
+    if (!updated.title) return;
+    updateTask(updated);
+    modal.close();
+  });
+
+  deleteBtn.addEventListener("click", () => {
+    const id = Number(document.getElementById("task-id").value);
+    if (window.confirm("Delete this task? This cannot be undone.")) {
+      deleteTask(id);
+      modal.close();
+    }
+  });
+}
+

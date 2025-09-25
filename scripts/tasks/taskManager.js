@@ -29,3 +29,25 @@ export function addNewTask() {
   resetForm();
   overlay.close();
 }
+
+/** Update an existing task and refresh the board */
+export function updateTask(updated) {
+  const tasks = loadTasksFromStorage();
+  const idx = tasks.findIndex((t) => t.id === updated.id);
+  if (idx === -1) return;
+
+  tasks[idx] = { ...tasks[idx], ...updated };
+  saveTasksToStorage(tasks);
+
+  clearExistingTasks();
+  renderTasks(tasks);
+}
+
+/** Delete a task by id and refresh the board */
+export function deleteTask(id) {
+  const tasks = loadTasksFromStorage().filter((t) => t.id !== id);
+  saveTasksToStorage(tasks);
+
+  clearExistingTasks();
+  renderTasks(tasks);
+}
