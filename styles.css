@@ -782,3 +782,90 @@ body.dark-mode .sidebar-hide-btn   { background: #3a3b47; color: #e0e0ff; }
 body.dark-mode .theme-card         { background: #3a3b47; }
 body.dark-mode .mm-theme-card      { background: #3a3b47; }
 
+/* === Step 4: Complete dark-mode surfaces, inputs, and banners === */
+
+/* Base palette already flips with body.dark-mode variables.
+   Now cover all visible surfaces/text and subtle borders. */
+body.dark-mode header,
+body.dark-mode .side-bar,
+body.dark-mode .modal-window,
+body.dark-mode #task-modal,
+body.dark-mode .tasks-container .task-div {
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+}
+
+/* Columns background stays page color */
+body.dark-mode #layout,
+body.dark-mode .container {
+  background-color: var(--secondary-color);
+}
+
+/* Column titles, muted labels */
+body.dark-mode .columnHeader,
+body.dark-mode h4,
+body.dark-mode .boards-title {
+  color: var(--secondary-font-color);
+}
+
+/* Board items */
+body.dark-mode .board-item {
+  color: var(--primary-font-color);
+  background: transparent;
+}
+body.dark-mode .board-item.is-active {
+  background: #635fc7;
+  color: #ffffff;
+}
+
+/* Task cards */
+body.dark-mode .task-div {
+  box-shadow: 0 4px 10px rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+/* Buttons */
+body.dark-mode .submit-btn { background: #635fc7; color: #fff; }
+body.dark-mode .submit-btn.danger { background: #ea5555; }
+body.dark-mode #add-new-task-btn { background: #635fc7; color: #fff; }
+
+/* Hide sidebar pill + theme cards */
+body.dark-mode .sidebar-hide-btn { background: #3a3b47; color: #e0e0ff; }
+body.dark-mode .theme-card,
+body.dark-mode .mm-theme-card { background: #3a3b47; }
+
+/* Status banner */
+body.dark-mode .status-banner.info  { background: #26314a; color: #cfe1ff; }
+body.dark-mode .status-banner.error { background: #3b1f1f; color: #ffd0d0; }
+
+/* Form fields (edit/new task) */
+body.dark-mode form input,
+body.dark-mode form textarea,
+body.dark-mode form select {
+  background: #2f3140;
+  color: #ffffff;
+  border: 1px solid #575b78;
+}
+
+/* Custom select arrow color shifts for dark (same SVG, light stroke) */
+body.dark-mode form select {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23E5E7EB" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>');
+}
+
+/* Close button color in dark stays readable */
+body.dark-mode .close-btn { color: #ff8a8a; }
+
+/* Focus rings for accessibility (both themes) */
+:focus-visible {
+  outline: 2px solid #7c86ff;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Mobile overlay panel background respects theme */
+@media (max-width: 1023px) {
+  body.dark-mode .side-bar.show-sidebar {
+    background: var(--primary-color);
+    box-shadow: 0 12px 36px rgba(0,0,0,.55);
+  }
+}
