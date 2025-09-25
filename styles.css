@@ -728,3 +728,57 @@ body.sidebar-collapsed .show-sidebar-btn {
 @media (min-width: 1024px) {
   #mobile-menu-overlay, #mobile-menu { display: none !important; }
 }
+
+/* ===== Desktop theme toggle card (replaces placeholder) ===== */
+.theme-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #f3f3ff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+}
+
+/* Reuse the simple switch you already used on mobile */
+.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; inset: 0; background: #a3a3a3; transition: .2s; border-radius: 999px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; top: 3px; background: #ffffff; transition: .2s; border-radius: 50%; }
+.switch input:checked + .slider { background: #635fc7; }
+.switch input:checked + .slider:before { transform: translateX(20px); }
+
+/* ===== Dark mode palette (applied when body has .dark-mode) ===== */
+body.dark-mode {
+  --primary-color: #2b2c37;        /* cards, header/sidebar base */
+  --secondary-color: #20212c;      /* page background */
+  --primary-font-color: #ffffff;   /* main text */
+  --secondary-font-color: #b3b8cc; /* muted text */
+}
+
+/* Basic surface + text swaps for dark mode */
+body.dark-mode {
+  background-color: var(--secondary-color);
+  color: var(--primary-font-color);
+}
+body.dark-mode .side-bar,
+body.dark-mode header,
+body.dark-mode .task-div,
+body.dark-mode .modal-window,
+body.dark-mode #task-modal {
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+}
+body.dark-mode .status-banner.info  { background: #26314a; color: #cfe1ff; }
+body.dark-mode .status-banner.error { background: #3b1f1f; color: #ffd0d0; }
+
+/* Light/dark contrast tweaks (optional but nice) */
+body.dark-mode .columnHeader       { color: var(--secondary-font-color); }
+body.dark-mode .boards-title       { color: var(--secondary-font-color); }
+body.dark-mode .board-item         { color: var(--primary-font-color); }
+body.dark-mode .board-item.is-active { background: #635fc7; color: #fff; }
+body.dark-mode .sidebar-hide-btn   { background: #3a3b47; color: #e0e0ff; }
+body.dark-mode .theme-card         { background: #3a3b47; }
+body.dark-mode .mm-theme-card      { background: #3a3b47; }
+
