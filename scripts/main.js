@@ -3,6 +3,7 @@ import { loadTasksFromStorage, saveTasksToStorage } from "./utils/localStorage.j
 import { clearExistingTasks, renderTasks } from "./ui/render.js";
 import { setupModalCloseHandler, setupNewTaskModalHandler, setupEditModalHandlers } from "./ui/modalHandlers.js";
 import { fetchInitialTasks } from "./api.js";
+import { setupSidebar } from "./ui/sidebar.js";
 
 /** Update the status banner text and show it */
 function setStatus(message, kind = "info") {
@@ -44,6 +45,8 @@ async function initTaskBoard() {
   // Keep existing modal hooks working
   setupModalCloseHandler();
   setupNewTaskModalHandler();
+  // wire sidebar controls (hide / show / mobile overlay)
+  setupSidebar();
 }
 
 setupEditModalHandlers();
