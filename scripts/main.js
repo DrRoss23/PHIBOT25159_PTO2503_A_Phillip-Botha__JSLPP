@@ -4,6 +4,8 @@ import { clearExistingTasks, renderTasks } from "./ui/render.js";
 import { setupModalCloseHandler, setupNewTaskModalHandler, setupEditModalHandlers } from "./ui/modalHandlers.js";
 import { fetchInitialTasks } from "./api.js";
 import { setupSidebar } from "./ui/sidebar.js";
+import { setupMobileMenu } from "./ui/mobileMenu.js";
+
 
 /** Update the status banner text and show it */
 function setStatus(message, kind = "info") {
@@ -47,6 +49,8 @@ async function initTaskBoard() {
   setupNewTaskModalHandler();
   // wire sidebar controls (hide / show / mobile overlay)
   setupSidebar();
+ // wire mobile menu controls (open / close)
+  setupMobileMenu();
 }
 
 setupEditModalHandlers();
