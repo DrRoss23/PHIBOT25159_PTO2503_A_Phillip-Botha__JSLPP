@@ -478,3 +478,13 @@ textarea {
     padding-bottom: 0;
   }
 }
+
+/* Status banner */
+.status-banner {
+  margin: 12px 35px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.status-banner.info  { background: #e8f1ff; color: #1f3b77; }
+.status-banner.error { background: #ffecec; color: #8b1a1a; }
