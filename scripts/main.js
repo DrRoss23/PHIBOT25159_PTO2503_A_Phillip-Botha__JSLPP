@@ -5,6 +5,7 @@ import { setupModalCloseHandler, setupNewTaskModalHandler, setupEditModalHandler
 import { fetchInitialTasks } from "./api.js";
 import { setupSidebar } from "./ui/sidebar.js";
 import { setupMobileMenu } from "./ui/mobileMenu.js";
+import { setupTheme } from "./ui/theme.js";
 
 
 /** Update the status banner text and show it */
@@ -51,6 +52,8 @@ async function initTaskBoard() {
   setupSidebar();
  // wire mobile menu controls (open / close)
   setupMobileMenu();
+  // wire theme toggle controls (desktop + mobile)
+  setupTheme();
 }
 
 setupEditModalHandlers();
