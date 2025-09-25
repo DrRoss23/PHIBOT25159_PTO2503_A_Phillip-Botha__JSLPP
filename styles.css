@@ -495,3 +495,75 @@ textarea {
 .submit-btn.danger { background: #ea5555; }
 .close-btn { background: transparent; border: 0; font-size: 1.25rem; cursor: pointer; }
 .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+
+/* Sidebar footer controls */
+.sidebar-controls {
+  margin-top: auto;
+  padding: 16px 18px;
+}
+.sidebar-hide-btn {
+  width: 100%;
+  background: #efeaff;
+  color: #635fc7;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+
+/* Floating "show sidebar" button (appears when sidebar is hidden) */
+.show-sidebar-btn {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  display: none;          /* default hidden; shown via state class below */
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: #635fc7;
+  color: #fff;
+  font-size: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+
+/* Collapsed state (desktop/tablet): hide sidebar and show the floating opener */
+body.sidebar-collapsed .side-bar {
+  display: none !important;
+}
+body.sidebar-collapsed .show-sidebar-btn {
+  display: inline-flex;
+}
+
+/* Mobile overlay behavior (we keep your Step 3 overlay styles) */
+@media (max-width: 1023px) {
+  .side-bar {
+    display: none;
+  }
+  .side-bar.show-sidebar {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 80vw;
+    max-width: 320px;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  }
+  body.menu-open { overflow: hidden; }
+
+  /* On small screens, the floating opener can always be used when sidebar is closed */
+  .show-sidebar-btn {
+    display: inline-flex;
+  }
+  /* But when sidebar overlay is open, hide the floating button to avoid overlap */
+  .side-bar.show-sidebar ~ .show-sidebar-btn {
+    display: none;
+  }
+}
