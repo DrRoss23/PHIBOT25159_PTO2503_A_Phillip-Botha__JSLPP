@@ -631,8 +631,8 @@ body.sidebar-collapsed .show-sidebar-btn {
 
   body.menu-open { overflow: hidden; }
 
-  .show-sidebar-btn { display: inline-flex; }              /* opener visible on mobile */
-  .side-bar.show-sidebar ~ .show-sidebar-btn { display: none; } /* hide opener while overlay open */
+  /* Floating opener is NOT used on mobile */
+  .show-sidebar-btn { display: none !important; }
 }
 
 /* ===== Mobile menu trigger (header logo) ===== */
