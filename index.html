@@ -85,29 +85,36 @@
       </div>
     </div>
     <!-- Modal: Displays each tasks details when the task is clicked -->
-    <dialog id="task-modal">
-      <form method="dialog" id="task-form">
-        <div class="modal-header">
-          <h3>Task</h3>
-          <button type="button" class="close-btn" id="close-modal-btn">
-            &times;
-          </button>
-        </div>
+    <!-- Edit Task Modal -->
+<dialog id="task-modal">
+  <form method="dialog" id="task-form">
+    <div class="modal-header">
+      <h3>Task</h3>
+      <button type="button" class="close-btn" id="close-modal-btn" aria-label="Close dialog">&times;</button>
+    </div>
 
-        <label for="task-title">Title</label>
-        <input type="text" id="task-title" name="title" required />
+    <!-- Hidden id so update/delete knows which task -->
+    <input type="hidden" id="task-id" />
 
-        <label for="task-desc">Description</label>
-        <textarea id="task-desc" name="description" rows="4"></textarea>
+    <label for="task-title">Title</label>
+    <input type="text" id="task-title" name="title" required />
 
-        <label for="task-status">Status</label>
-        <select id="task-status" name="status" required>
-          <option value="todo">todo</option>
-          <option value="doing">doing</option>
-          <option value="done">done</option>
-        </select>
-      </form>
-    </dialog>
+    <label for="task-desc">Description</label>
+    <textarea id="task-desc" name="description" rows="4"></textarea>
+
+    <label for="task-status">Status</label>
+    <select id="task-status" name="status" required>
+      <option value="todo">todo</option>
+      <option value="doing">doing</option>
+      <option value="done">done</option>
+    </select>
+
+    <div class="button-group">
+      <button type="submit" id="save-task-btn" class="submit-btn">Save changes</button>
+      <button type="button" id="delete-task-btn" class="submit-btn danger">Delete task</button>
+    </div>
+  </form>
+</dialog>
     <!-- New Task Modal: Form for adding a new task. -->
 
     <dialog class="modal-overlay">
