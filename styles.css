@@ -306,6 +306,8 @@ form select {
   font-family: inherit;
   font-size: 0.8125em;
   resize: vertical;
+  background: #ffffff;
+  color: #111111;
 }
 
 form select {
@@ -1024,13 +1026,13 @@ body.dark-mode form select {
 /* Dark mode: keep dark background + single arrow icon */
 body.dark-mode form select {
   appearance: none;
-  background-color: #2f3140;                     /* keep the dark fill */
+  background-color: #2f3140; /* keep the dark fill */
   color: #ffffff;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23E5E7EB" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>');
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1.4rem;
-  padding-right: 1rem;                            /* space for arrow */
+  padding-right: 1rem; /* space for arrow */
   border: 1px solid #575b78;
 }
 
@@ -1039,7 +1041,6 @@ body.dark-mode form select option {
   background-color: #2f3140;
   color: #ffffff;
 }
-
 
 /* Close button color in dark stays readable */
 body.dark-mode .close-btn {
@@ -1062,8 +1063,12 @@ body.dark-mode .close-btn {
 }
 
 /* Let the browser render form controls in dark when dark mode is active */
-:root { color-scheme: light dark; }
-body.dark-mode { color-scheme: dark; }
+:root {
+  color-scheme: light;
+}
+body.dark-mode {
+  color-scheme: dark;
+}
 
 /* Dark mode: Status <select> styling */
 body.dark-mode form select {
@@ -1071,7 +1076,7 @@ body.dark-mode form select {
   -moz-appearance: none;
   appearance: none;
 
-  background-color: #2f3140;                 /* keep control dark */
+  background-color: #2f3140; /* keep control dark */
   color: #ffffff;
   border: 1px solid #575b78;
   border-radius: 4px;
@@ -1081,7 +1086,7 @@ body.dark-mode form select {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1.4rem;
-  padding-right: 1rem;                        /* room for arrow */
+  padding-right: 1rem; /* room for arrow */
 }
 
 /* Dark dropdown list items */
@@ -1101,5 +1106,5 @@ body.dark-mode form select option:checked {
 body.dark-mode form select:focus {
   outline: none;
   border-color: #635fc7;
-  box-shadow: 0 0 0 3px rgba(99,95,199,.35);
+  box-shadow: 0 0 0 3px rgba(99, 95, 199, 0.35);
 }
