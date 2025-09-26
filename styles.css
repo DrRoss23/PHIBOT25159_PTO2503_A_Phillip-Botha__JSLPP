@@ -1,3 +1,21 @@
+/* ==========================================================================
+   Kanban Task Management — App Styles
+   Purpose: Core layout, components, and theming for the task board UI.
+   Organization:
+     1) Global resets & CSS variables
+     2) Base elements (body, typography)
+     3) Layout (header, columns, sidebar)
+     4) Components (cards, modals, buttons)
+     5) Responsive rules (tablet, mobile)
+     6) Theme (light/dark via body.dark-mode)
+   Conventions:
+     • Use CSS custom properties for colors and spacing
+     • Keep component styles colocated with their section
+     • Prefer class selectors over IDs for reusable pieces
+   Theme Strategy: Variables in :root define light palette; toggling `body.dark-mode`
+   flips surfaces via overrides. Avoid duplicating rules—only change where contrast differs.
+========================================================================== */
+
 /* ========================
    Global & Root Variables
 ======================== */
@@ -38,7 +56,7 @@ body {
 }
 
 #logo {
-  height: 24px;     /* consistent logo size */
+  height: 24px; /* consistent logo size */
   width: auto;
 }
 
@@ -64,13 +82,13 @@ h4 {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #635fc7;   /* active state color to match Figma */
+  background-color: #635fc7; /* active state color to match Figma */
   color: #fff;
   border: none;
   border-radius: 0 100px 100px 0; /* pill only on right */
   height: 48px;
-  width: 100%;                 /* fill sidebar width */
-  padding: 0 16px;             /* inner text padding */
+  width: 100%; /* fill sidebar width */
+  padding: 0 16px; /* inner text padding */
   font-size: 0.9375rem;
   font-weight: 700;
   cursor: pointer;
@@ -366,6 +384,8 @@ textarea {
    Responsive Styles
 ======================== */
 
+/* Breakpoint note: ≤1023px = tablet; ≤576px = phone */
+
 /******** Tablets ********/
 @media screen and (max-width: 1023px) {
   .side-bar {
@@ -479,15 +499,44 @@ textarea {
   border-radius: 8px;
   font-size: 0.95rem;
 }
-.status-banner.info  { background: #e8f1ff; color: #1f3b77; }
-.status-banner.error { background: #ffecec; color: #8b1a1a; }
+.status-banner.info {
+  background: #e8f1ff;
+  color: #1f3b77;
+}
+.status-banner.error {
+  background: #ffecec;
+  color: #8b1a1a;
+}
 
 /* Edit modal buttons */
-.button-group { display: flex; gap: 10px; margin-top: 14px; }
-.submit-btn { border: 0; border-radius: 6px; padding: 10px 12px; cursor: pointer; background: #635fc7; color: #fff; }
-.submit-btn.danger { background: #ea5555; }
-.close-btn { background: transparent; border: 0; font-size: 1.25rem; cursor: pointer; }
-.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.submit-btn {
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  cursor: pointer;
+  background: #635fc7;
+  color: #fff;
+}
+.submit-btn.danger {
+  background: #ea5555;
+}
+.close-btn {
+  background: transparent;
+  border: 0;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 
 /* ============== SIDEBAR LAYOUT (DESKTOP & MOBILE) ============== */
 
@@ -497,9 +546,9 @@ textarea {
   flex-direction: column;
   background: #ffffff;
   padding-top: 24px;
-  padding-right: 24px;  /* keep right breathing space */
+  padding-right: 24px; /* keep right breathing space */
   padding-bottom: 24px;
-  padding-left: 0;      /* flush-left boards */
+  padding-left: 0; /* flush-left boards */
 }
 
 /* Logo stays at the very top */
@@ -548,10 +597,10 @@ textarea {
 
 /* Placeholder for the future theme toggle card */
 .theme-switch-space {
-  height: 56px;                /* reserve space */
+  height: 56px; /* reserve space */
   background: #f3f3ff;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 /* Hide Sidebar button — pill, flush-left look, centered bold label */
@@ -559,7 +608,7 @@ textarea {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;     /* center the text in the button */
+  justify-content: center; /* center the text in the button */
   gap: 8px;
   width: 100%;
   padding: 12px 16px;
@@ -567,15 +616,15 @@ textarea {
   cursor: pointer;
   background: #efeaff;
   color: #635fc7;
-  font-weight: 700;            /* bold */
+  font-weight: 700; /* bold */
   border-radius: 0 999px 999px 0; /* right-only pill */
-  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 .sidebar-hide-btn .btn-emoji {
   display: inline-flex;
   justify-content: center;
-  width: 24px;                 /* gives emoji a dedicated left gutter */
+  width: 24px; /* gives emoji a dedicated left gutter */
   margin-right: 4px;
 }
 .sidebar-hide-btn .btn-label {
@@ -595,7 +644,7 @@ body.sidebar-collapsed .show-sidebar-btn {
   position: fixed;
   left: 16px;
   bottom: 16px;
-  display: none;               /* toggled by state/media rules */
+  display: none; /* toggled by state/media rules */
   align-items: center;
   justify-content: center;
   width: 48px;
@@ -606,7 +655,7 @@ body.sidebar-collapsed .show-sidebar-btn {
   background: #635fc7;
   color: #fff;
   font-size: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== Mobile overlay behavior ===== */
@@ -626,13 +675,17 @@ body.sidebar-collapsed .show-sidebar-btn {
     max-width: 320px;
     z-index: 1000;
     background: var(--secondary-color, #ffffff);
-    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 
-  body.menu-open { overflow: hidden; }
+  body.menu-open {
+    overflow: hidden;
+  }
 
   /* Floating opener is NOT used on mobile */
-  .show-sidebar-btn { display: none !important; }
+  .show-sidebar-btn {
+    display: none !important;
+  }
 }
 
 /* ===== Mobile menu trigger (header logo) ===== */
@@ -644,26 +697,30 @@ body.sidebar-collapsed .show-sidebar-btn {
 }
 
 /* ===== Overlay (dim background) ===== */
-#mobile-menu-overlay[hidden] { display: none; }
+#mobile-menu-overlay[hidden] {
+  display: none;
+}
 #mobile-menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 900;
 }
 
 /* ===== Boxed menu panel ===== */
-#mobile-menu[hidden] { display: none; }
+#mobile-menu[hidden] {
+  display: none;
+}
 #mobile-menu {
   position: fixed;
-  top: 64px;               /* appears below your header */
+  top: 64px; /* appears below your header */
   left: 50%;
   transform: translateX(-50%);
   width: 90vw;
   max-width: 360px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
   z-index: 901;
   padding: 16px;
 }
@@ -691,7 +748,11 @@ body.sidebar-collapsed .show-sidebar-btn {
 }
 
 /* Panel content */
-.mm-content { display: flex; flex-direction: column; gap: 14px; }
+.mm-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 .mm-board {
   width: 100%;
   text-align: left;
@@ -703,7 +764,10 @@ body.sidebar-collapsed .show-sidebar-btn {
   font-weight: 700;
   cursor: pointer;
 }
-.mm-board.is-active { background: #635fc7; color: #ffffff; }
+.mm-board.is-active {
+  background: #635fc7;
+  color: #ffffff;
+}
 
 /* Theme card (placeholder) */
 .mm-theme-card {
@@ -717,16 +781,49 @@ body.sidebar-collapsed .show-sidebar-btn {
 }
 
 /* Simple switch (visual only for now) */
-.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; inset: 0; background: #a3a3a3; transition: .2s; border-radius: 999px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; top: 3px; background: #ffffff; transition: .2s; border-radius: 50%; }
-.switch input:checked + .slider { background: #635fc7; }
-.switch input:checked + .slider:before { transform: translateX(20px); }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #a3a3a3;
+  transition: 0.2s;
+  border-radius: 999px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: #ffffff;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+.switch input:checked + .slider {
+  background: #635fc7;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
 
 /* Show panel only on mobile; hide on desktop */
 @media (min-width: 1024px) {
-  #mobile-menu-overlay, #mobile-menu { display: none !important; }
+  #mobile-menu-overlay,
+  #mobile-menu {
+    display: none !important;
+  }
 }
 
 /* ===== Desktop theme toggle card (replaces placeholder) ===== */
@@ -738,22 +835,58 @@ body.sidebar-collapsed .show-sidebar-btn {
   background: #f3f3ff;
   padding: 10px 12px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 /* Reuse the simple switch you already used on mobile */
-.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; inset: 0; background: #a3a3a3; transition: .2s; border-radius: 999px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; top: 3px; background: #ffffff; transition: .2s; border-radius: 50%; }
-.switch input:checked + .slider { background: #635fc7; }
-.switch input:checked + .slider:before { transform: translateX(20px); }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #a3a3a3;
+  transition: 0.2s;
+  border-radius: 999px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: #ffffff;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+.switch input:checked + .slider {
+  background: #635fc7;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Dark Mode Strategy
+   -------------------
+   We flip CSS custom properties under body.dark-mode and opt in to
+   surface-specific overrides where contrast/shadows differ (cards, inputs,
+   banners). New surfaces should prefer variables first, then minimal overrides. */
 
 /* ===== Dark mode palette (applied when body has .dark-mode) ===== */
 body.dark-mode {
-  --primary-color: #2b2c37;        /* cards, header/sidebar base */
-  --secondary-color: #20212c;      /* page background */
-  --primary-font-color: #ffffff;   /* main text */
+  --primary-color: #2b2c37; /* cards, header/sidebar base */
+  --secondary-color: #20212c; /* page background */
+  --primary-font-color: #ffffff; /* main text */
   --secondary-font-color: #b3b8cc; /* muted text */
 }
 
@@ -770,17 +903,39 @@ body.dark-mode #task-modal {
   background-color: var(--primary-color);
   color: var(--primary-font-color);
 }
-body.dark-mode .status-banner.info  { background: #26314a; color: #cfe1ff; }
-body.dark-mode .status-banner.error { background: #3b1f1f; color: #ffd0d0; }
+body.dark-mode .status-banner.info {
+  background: #26314a;
+  color: #cfe1ff;
+}
+body.dark-mode .status-banner.error {
+  background: #3b1f1f;
+  color: #ffd0d0;
+}
 
 /* Light/dark contrast tweaks (optional but nice) */
-body.dark-mode .columnHeader       { color: var(--secondary-font-color); }
-body.dark-mode .boards-title       { color: var(--secondary-font-color); }
-body.dark-mode .board-item         { color: var(--primary-font-color); }
-body.dark-mode .board-item.is-active { background: #635fc7; color: #fff; }
-body.dark-mode .sidebar-hide-btn   { background: #3a3b47; color: #e0e0ff; }
-body.dark-mode .theme-card         { background: #3a3b47; }
-body.dark-mode .mm-theme-card      { background: #3a3b47; }
+body.dark-mode .columnHeader {
+  color: var(--secondary-font-color);
+}
+body.dark-mode .boards-title {
+  color: var(--secondary-font-color);
+}
+body.dark-mode .board-item {
+  color: var(--primary-font-color);
+}
+body.dark-mode .board-item.is-active {
+  background: #635fc7;
+  color: #fff;
+}
+body.dark-mode .sidebar-hide-btn {
+  background: #3a3b47;
+  color: #e0e0ff;
+}
+body.dark-mode .theme-card {
+  background: #3a3b47;
+}
+body.dark-mode .mm-theme-card {
+  background: #3a3b47;
+}
 
 /* === Step 4: Complete dark-mode surfaces, inputs, and banners === */
 
@@ -820,23 +975,42 @@ body.dark-mode .board-item.is-active {
 
 /* Task cards */
 body.dark-mode .task-div {
-  box-shadow: 0 4px 10px rgba(0,0,0,.35);
-  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Buttons */
-body.dark-mode .submit-btn { background: #635fc7; color: #fff; }
-body.dark-mode .submit-btn.danger { background: #ea5555; }
-body.dark-mode #add-new-task-btn { background: #635fc7; color: #fff; }
+body.dark-mode .submit-btn {
+  background: #635fc7;
+  color: #fff;
+}
+body.dark-mode .submit-btn.danger {
+  background: #ea5555;
+}
+body.dark-mode #add-new-task-btn {
+  background: #635fc7;
+  color: #fff;
+}
 
 /* Hide sidebar pill + theme cards */
-body.dark-mode .sidebar-hide-btn { background: #3a3b47; color: #e0e0ff; }
+body.dark-mode .sidebar-hide-btn {
+  background: #3a3b47;
+  color: #e0e0ff;
+}
 body.dark-mode .theme-card,
-body.dark-mode .mm-theme-card { background: #3a3b47; }
+body.dark-mode .mm-theme-card {
+  background: #3a3b47;
+}
 
 /* Status banner */
-body.dark-mode .status-banner.info  { background: #26314a; color: #cfe1ff; }
-body.dark-mode .status-banner.error { background: #3b1f1f; color: #ffd0d0; }
+body.dark-mode .status-banner.info {
+  background: #26314a;
+  color: #cfe1ff;
+}
+body.dark-mode .status-banner.error {
+  background: #3b1f1f;
+  color: #ffd0d0;
+}
 
 /* Form fields (edit/new task) */
 body.dark-mode form input,
@@ -853,7 +1027,9 @@ body.dark-mode form select {
 }
 
 /* Close button color in dark stays readable */
-body.dark-mode .close-btn { color: #ff8a8a; }
+body.dark-mode .close-btn {
+  color: #ff8a8a;
+}
 
 /* Focus rings for accessibility (both themes) */
 :focus-visible {
@@ -866,6 +1042,6 @@ body.dark-mode .close-btn { color: #ff8a8a; }
 @media (max-width: 1023px) {
   body.dark-mode .side-bar.show-sidebar {
     background: var(--primary-color);
-    box-shadow: 0 12px 36px rgba(0,0,0,.55);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
   }
 }
