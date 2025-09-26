@@ -78,7 +78,7 @@ By working with this portfolio project, you will learn how to:
 
 ---
 
-## Maintainability (Step 5)
+## Maintainability
 
 This portfolio project follows best practices to ensure maintainability:
 
