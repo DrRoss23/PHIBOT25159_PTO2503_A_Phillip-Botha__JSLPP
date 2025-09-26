@@ -108,7 +108,9 @@ This portfolio project follows best practices to ensure maintainability:
 A walkthrough video demonstrating the project features and code structure is available here:
 
 [**Watch the Loom Video**](#)  
-_(Placeholder link – update with actual video URL)_
+1. https://www.loom.com/share/48336ec2d7bc4fddac9c017db3cc547a?sid=4202d4f4-eec8-49e3-94f7-5a4d594eddf4
+
+2. https://www.loom.com/share/3de9a0e3706a4a68b938757ddcf114e2?sid=484be172-a405-44b3-872e-5695b5e01b1a
 
 ---
 
