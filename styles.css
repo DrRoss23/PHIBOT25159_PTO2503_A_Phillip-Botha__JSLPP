@@ -1021,14 +1021,25 @@ body.dark-mode form select {
   border: 1px solid #575b78;
 }
 
-/* Dark mode: custom select arrow (single icon, no tiling) */
+/* Dark mode: keep dark background + single arrow icon */
 body.dark-mode form select {
-  appearance: none; /* keep native arrow hidden */
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23E5E7EB" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
-    no-repeat right 0.75rem center;
+  appearance: none;
+  background-color: #2f3140;                     /* keep the dark fill */
+  color: #ffffff;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23E5E7EB" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
   background-size: 1.4rem;
-  padding-right: 1rem; /* room for the arrow */
+  padding-right: 1rem;                            /* space for arrow */
+  border: 1px solid #575b78;
 }
+
+/* Some browsers use these colors for the dropdown list items too */
+body.dark-mode form select option {
+  background-color: #2f3140;
+  color: #ffffff;
+}
+
 
 /* Close button color in dark stays readable */
 body.dark-mode .close-btn {
