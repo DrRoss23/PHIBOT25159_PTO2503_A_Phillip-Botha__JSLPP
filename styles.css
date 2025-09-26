@@ -1060,3 +1060,46 @@ body.dark-mode .close-btn {
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
   }
 }
+
+/* Let the browser render form controls in dark when dark mode is active */
+:root { color-scheme: light dark; }
+body.dark-mode { color-scheme: dark; }
+
+/* Dark mode: Status <select> styling */
+body.dark-mode form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-color: #2f3140;                 /* keep control dark */
+  color: #ffffff;
+  border: 1px solid #575b78;
+  border-radius: 4px;
+
+  /* single arrow icon on the right */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23E5E7EB" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.4rem;
+  padding-right: 1rem;                        /* room for arrow */
+}
+
+/* Dark dropdown list items */
+body.dark-mode form select option {
+  background-color: #2f3140;
+  color: #ffffff;
+}
+
+/* Improve hover/selected states inside the dropdown */
+body.dark-mode form select option:hover,
+body.dark-mode form select option:checked {
+  background-color: #3a3b47;
+  color: #ffffff;
+}
+
+/* Focus state for the control itself */
+body.dark-mode form select:focus {
+  outline: none;
+  border-color: #635fc7;
+  box-shadow: 0 0 0 3px rgba(99,95,199,.35);
+}
