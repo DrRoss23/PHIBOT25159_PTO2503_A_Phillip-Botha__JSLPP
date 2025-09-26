@@ -1,4 +1,12 @@
+/**
+ * This file defines the seed tasks used for initial load before API or localStorage data is available.
+ */
+
+/**
+ * An array of task objects, each containing id, title, description, status, and board.
+ */
 export const initialTasks = [
+  // Starter demo tasks
   {
     id: 1,
     title: "Launch Epic Career 🚀",
@@ -21,6 +29,7 @@ export const initialTasks = [
     board: "Launch Career",
   },
 
+  // Additional seed tasks showcasing learning goals
   {
     id: 11,
     title: "Learn Data Structures and Algorithms 📚",
